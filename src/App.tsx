@@ -10,8 +10,7 @@ function App() {
     ])
 
     const removeTask=(id:number)=>{
-        task=task.filter(f=>f.id!==id)
-        setTask(task)
+        setTask(task.filter(f=>f.id!==id))
     }
 
     return (
