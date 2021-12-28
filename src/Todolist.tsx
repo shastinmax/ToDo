@@ -1,8 +1,9 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
 import {FilterValuesType} from './App';
 import s from './TodoList.module.css'
+import {TaskMap} from "./components/TaskMap";
 
-type TaskType = {
+export type TaskType = {
     id: string
     title: string
     isDone: boolean
@@ -51,6 +52,7 @@ export function Todolist(props: PropsType) {
     const onChangeCheckbox = (tId: string, value: boolean) => {
         props.changeCheckboxStatus(tId, value)
     }
+    const onClickHandler = (tId:string) => props.removeTask(tId)
 
     return <div>
         <h3>{props.title}</h3>
@@ -65,21 +67,22 @@ export function Todolist(props: PropsType) {
         </div>
         <ul>
             {
-                props.tasks.map(t => {
-
-                    const onClickHandler = () => props.removeTask(t.id)
-
-                    // const onChangeCheckbox = (e: ChangeEvent<HTMLInputElement>) => {
-                    //    props.changeCheckboxStatus(t.id,e.currentTarget.checked)
-                    // }
-
-                    return <li key={t.id} className={t.isDone?s.isDone:''}>
-                        <input type="checkbox" checked={t.isDone}
-                               onChange={(e) => onChangeCheckbox(t.id, e.currentTarget.checked)}/>
-                        <span>{t.title}</span>
-                        <button onClick={onClickHandler}>x</button>
-                    </li>
-                })
+                <TaskMap tasks={props.tasks} onChangeCheckbox={onChangeCheckbox} onClickHandler={onClickHandler}/>
+                // props.tasks.map(t => {
+                //
+                //     // const onClickHandler = () => props.removeTask(t.id)
+                //
+                //     // const onChangeCheckbox = (e: ChangeEvent<HTMLInputElement>) => {
+                //     //    props.changeCheckboxStatus(t.id,e.currentTarget.checked)
+                //     // }
+                //
+                //     return <li key={t.id} className={t.isDone?s.isDone:''}>
+                //         <input type="checkbox" checked={t.isDone}
+                //                onChange={(e) => onChangeCheckbox(t.id, e.currentTarget.checked)}/>
+                //         <span>{t.title}</span>
+                //         <button onClick={()=>onClickHandler(t.id)}>x</button>
+                //     </li>
+                // })
             }
         </ul>
         <div>
