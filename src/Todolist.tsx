@@ -1,5 +1,6 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
 import {FilterValuesType} from './App';
+import s from './TodoList.module.css'
 
 type TaskType = {
     id: string
@@ -13,19 +14,26 @@ type PropsType = {
     removeTask: (taskId: string) => void
     changeFilter: (value: FilterValuesType) => void
     addTask: (title: string) => void
-    changeCheckboxStatus:(id:string,value:boolean)=>void
+    changeCheckboxStatus: (id: string, value: boolean) => void
 }
 
 export function Todolist(props: PropsType) {
 
     let [title, setTitle] = useState("")
-
+    const [error, setError] = useState(false)
     const addTask = () => {
-        props.addTask(title);
-        setTitle("");
+        if (title.trim() !== '') {
+            props.addTask(title.trim());
+            setTitle("");
+        } else {
+            setError(true)
+        }
+
+
     }
 
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+        setError(false)
         setTitle(e.currentTarget.value)
     }
 
@@ -39,8 +47,8 @@ export function Todolist(props: PropsType) {
     const onActiveClickHandler = () => props.changeFilter("active");
     const onCompletedClickHandler = () => props.changeFilter("completed");
 
-    const onChangeCheckbox = (tId:string,value:boolean) => {
-        props.changeCheckboxStatus(tId,value)
+    const onChangeCheckbox = (tId: string, value: boolean) => {
+        props.changeCheckboxStatus(tId, value)
     }
 
     return <div>
@@ -49,8 +57,10 @@ export function Todolist(props: PropsType) {
             <input value={title}
                    onChange={onChangeHandler}
                    onKeyPress={onKeyPressHandler}
+                   className={error ? s.error : ''}
             />
             <button onClick={addTask}>+</button>
+            <div className={error ? s.errorMessage : ''}>Title is required</div>
         </div>
         <ul>
             {
@@ -63,7 +73,8 @@ export function Todolist(props: PropsType) {
                     // }
 
                     return <li key={t.id}>
-                        <input type="checkbox" checked={t.isDone} onChange={(e)=>onChangeCheckbox(t.id,e.currentTarget.checked)}/>
+                        <input type="checkbox" checked={t.isDone}
+                               onChange={(e) => onChangeCheckbox(t.id, e.currentTarget.checked)}/>
                         <span>{t.title}</span>
                         <button onClick={onClickHandler}>x</button>
                     </li>
