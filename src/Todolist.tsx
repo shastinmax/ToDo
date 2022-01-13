@@ -56,8 +56,7 @@ export function Todolist(props: PropsType) {
             <button onClick={removeTodolist}>x</button>
         </h3>
         <div>
-            <InputButton title={props.title} onChangeHandler={onChangeHandler}
-                         onKeyPressHandler={onKeyPressHandler} error={error} addTask={addTask}/>
+            <InputButton addTask={props.addTask} todolistId={props.id}/>
             {/*<input value={title}*/}
             {/*       onChange={onChangeHandler}*/}
             {/*       onKeyPress={onKeyPressHandler}*/}
