@@ -2,6 +2,8 @@ import React, {useState} from 'react';
 import './App.css';
 import {TaskType, Todolist} from './Todolist';
 import {v1} from 'uuid';
+import {InputButton} from "./components/InputButton";
+import {log} from "util";
 
 export type FilterValuesType = "all" | "active" | "completed";
 type TodolistType = {
@@ -67,7 +69,6 @@ function App() {
             setTasks({...tasks});
         }
     }
-
     function changeFilter(value: FilterValuesType, todolistId: string) {
         let todolist = todolists.find(tl => tl.id === todolistId);
         if (todolist) {
@@ -75,7 +76,6 @@ function App() {
             setTodolists([...todolists])
         }
     }
-
     function removeTodolist(id: string) {
         // засунем в стейт список тудулистов, id которых не равны тому, который нужно выкинуть
         setTodolists(todolists.filter(tl => tl.id != id));
@@ -84,9 +84,18 @@ function App() {
         // засетаем в стейт копию объекта, чтобы React отреагировал перерисовкой
         setTasks({...tasks});
     }
+    const addTodoList=(title: string)=>{
+        let newId=v1()
+        let newTodolist:TodolistType={id: newId, title: title, filter: "all"}
+        setTodolists([newTodolist,...todolists])
+        setTasks({...tasks,[newId]:[]})
+    }
+
+
 
     return (
         <div className="App">
+            <InputButton callback={addTodoList} />
             {
                 todolists.map(tl => {
                     let allTodolistTasks = tasks[tl.id];
