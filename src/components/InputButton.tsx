@@ -19,10 +19,10 @@ export const InputButton = ({callback,...props}:TypeProps) => {
             setError("Title is required");
         }
     }
-
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setTitle(e.currentTarget.value)
     }
+
 
     const onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
         setError(null);

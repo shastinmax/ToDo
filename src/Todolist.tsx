@@ -1,6 +1,7 @@
 import React, {ChangeEvent, useState, KeyboardEvent} from 'react';
 import {FilterValuesType} from './App';
 import {InputButton} from "./components/InputButton";
+import {EditableSpan} from "./components/EditableSpan";
 
 export type TaskType = {
     id: string
@@ -18,6 +19,8 @@ type PropsType = {
     changeTaskStatus: (id: string, isDone: boolean, todolistId: string) => void
     removeTodolist: (id: string) => void
     filter: FilterValuesType
+    updateTask:(todolistId: string,id: string,title: string,)=>void
+    updateTitle:(todolistId:string,title:string)=>void
 }
 
 export function Todolist(props: PropsType) {
@@ -58,13 +61,18 @@ const callbackHandler=(title:string)=>{
         let newIsDoneValue = e.currentTarget.checked;
         props.changeTaskStatus(tid, newIsDoneValue, props.id);
     }
-
+    const callbackHandlerForUpdateTask=(tId:string,title:string)=>{
+    props.updateTask(props.id,tId,title)
+    }
+    const callbackHandlerForUpdateTitle=(title:string)=>{
+    props.updateTitle(props.id,title)
+    }
     return <div>
-        <h3> {props.title}
+        <h3> <EditableSpan title={props.title} callback={(title)=>callbackHandlerForUpdateTitle(title)}/>
             <button onClick={removeTodolist}>x</button>
         </h3>
         <div>
-            <InputButton callback={callbackHandler}/>
+            <InputButton callback={callbackHandler} />
             {/*<input value={title}*/}
             {/*       onChange={onChangeHandler}*/}
             {/*       onKeyPress={onKeyPressHandler}*/}
@@ -84,7 +92,7 @@ const callbackHandler=(title:string)=>{
 
                     return <li key={t.id} className={t.isDone ? "is-done" : ""}>
                         <input type="checkbox" onChange={(e)=>onChangeHandlers(t.id,e)} checked={t.isDone}/>
-                        <span>{t.title}</span>
+                        <EditableSpan title={t.title} callback={(title)=>callbackHandlerForUpdateTask(t.id,title)}/>
                         <button onClick={()=>onClickHandler(t.id)}>x</button>
                     </li>
                 })
