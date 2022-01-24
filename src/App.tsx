@@ -3,6 +3,7 @@ import './App.css';
 import {Todolist} from './Todolist';
 import { v1 } from 'uuid';
 import {addTaskAC, removeTaskAC, TaskReducer} from "./components/taskReducer";
+import {changeFilterAC, FilterReducer} from "./filterReducer";
 
 export type FilterValuesType = "all" | "active" | "completed";
 
@@ -23,6 +24,7 @@ function App() {
         { id: v1(), title: "GraphQL", isDone: false },
     ]);
 
+
     function removeTask(id: string) {
         // let filteredTasks = tasks.filter(t => t.id != id);
         taskDispatch(removeTaskAC(id))
@@ -34,7 +36,9 @@ function App() {
         taskDispatch(addTaskAC(title))
     }
 
-    let [filter, setFilter] = useState<FilterValuesType>("all");
+    // let [filter, setFilter] = useState<FilterValuesType>("all");
+    let [filter, filterDispatch] = useReducer(FilterReducer,"all");
+
 
     let tasksForTodolist = tasks;
 
@@ -46,7 +50,7 @@ function App() {
     }
 
     function changeFilter(value: FilterValuesType) {
-        setFilter(value);
+        filterDispatch(changeFilterAC(value));
     }
 
 

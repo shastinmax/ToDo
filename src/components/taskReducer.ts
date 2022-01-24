@@ -1,5 +1,6 @@
 import {TaskType} from "../Todolist";
 import {v1} from "uuid";
+import {FilterValuesType} from "../App";
 
 export const TaskReducer=(state:Array<TaskType>,action:GeneralTYpe)=>{
     switch(action.type){
@@ -14,8 +15,12 @@ export const TaskReducer=(state:Array<TaskType>,action:GeneralTYpe)=>{
         default:return state
     }
 }
+
+
+
 type GeneralTYpe=removeTaskACType
 | addTaskType
+
 type removeTaskACType=ReturnType<typeof removeTaskAC>
 
 export const removeTaskAC=(id:string)=>{
