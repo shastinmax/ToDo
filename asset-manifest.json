@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/Social-Network-TypeScript/static/css/main.aa207b39.chunk.css",
+    "main.js": "/Social-Network-TypeScript/static/js/main.a5103fb3.chunk.js",
+    "main.js.map": "/Social-Network-TypeScript/static/js/main.a5103fb3.chunk.js.map",
+    "runtime-main.js": "/Social-Network-TypeScript/static/js/runtime-main.d68ad265.js",
+    "runtime-main.js.map": "/Social-Network-TypeScript/static/js/runtime-main.d68ad265.js.map",
+    "static/js/2.f40acb60.chunk.js": "/Social-Network-TypeScript/static/js/2.f40acb60.chunk.js",
+    "static/js/2.f40acb60.chunk.js.map": "/Social-Network-TypeScript/static/js/2.f40acb60.chunk.js.map",
+    "index.html": "/Social-Network-TypeScript/index.html",
+    "precache-manifest.e1957ebf6bb9e8d30b2a53558aa1e0a8.js": "/Social-Network-TypeScript/precache-manifest.e1957ebf6bb9e8d30b2a53558aa1e0a8.js",
+    "service-worker.js": "/Social-Network-TypeScript/service-worker.js",
+    "static/css/main.aa207b39.chunk.css.map": "/Social-Network-TypeScript/static/css/main.aa207b39.chunk.css.map",
+    "static/js/2.f40acb60.chunk.js.LICENSE.txt": "/Social-Network-TypeScript/static/js/2.f40acb60.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.d68ad265.js",
+    "static/js/2.f40acb60.chunk.js",
+    "static/css/main.aa207b39.chunk.css",
+    "static/js/main.a5103fb3.chunk.js"
+  ]
+}
