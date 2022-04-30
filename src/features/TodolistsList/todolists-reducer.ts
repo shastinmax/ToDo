@@ -10,13 +10,7 @@ import {
 import {handleServerNetworkError} from '../../utils/error-utils'
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
-
 const initialState: Array<TodolistDomainType> = []
-
-// const slice = createSlice({
-//     name: 'todolist',
-//     initialState:initialState,
-//     reducers: {
 const slice = createSlice({
     name: 'todolist',
     initialState: initialState,
@@ -48,7 +42,6 @@ const slice = createSlice({
         }
     }
 })
-
 
 export const todolistsReducer = slice.reducer
 export const {
